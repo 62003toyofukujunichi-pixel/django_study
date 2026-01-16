@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>マイ掲示板</title>
+    <style>
+        /* 背景とフォントの設定 */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        /* ヘッダーのデザイン */
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        /* 投稿カードのデザイン */
+        .post {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .post h2 {
+            color: #007bff;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Django 掲示板アプリ</h1>
+    </header>
+<div style="text-align: center; margin-bottom: 20px;">
+    <a href="{% url 'create' %}" style="text-decoration: none; background-color: #28a745; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+        ＋ 新しく投稿する
+    </a>
+
+</div>
+    <main>
+        {% for post in posts %}
+            <article class="post">
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.content }}</p>
+        <div style="margin-top: 10px; text-align: right;">
+            <a href="{% url 'edit' post.pk %}" style="color: #007bff; text-decoration: none; margin-right: 15px;">編集</a>
+            <a href="{% url 'delete' post.pk %}" style="color: #dc3545; text-decoration: none;">削除</a>
+            </div>
+    </article>
+        {% endfor %}
+    </main>
+
+    <footer>
+        <p>&copy; 2026 AI Consultant Project</p>
+    </footer>
+</body>
+</html>

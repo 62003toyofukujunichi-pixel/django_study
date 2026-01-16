@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>新規投稿</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background-color: #f0f2f5; }
+        form { background: white; padding: 20px; border-radius: 8px; max-width: 500px; margin: auto; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        input, textarea { width: 100%; margin-bottom: 15px; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; color: #333;">新しい投稿を作成</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="タイトルを入力" required>
+        <textarea name="content" rows="5" placeholder="本文を入力してください" required></textarea>
+        <button type="submit">投稿する</button>
+    </form>
+    <p style="text-align: center; margin-top: 20px;"><a href="{% url 'index' %}" style="color: #666;">戻る</a></p>
+</body>
+</html>

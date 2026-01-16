@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>データ可視化</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body style="font-family: sans-serif; padding: 30px; background-color: #f0f2f5;">
+    <h1 style="text-align: center;">投稿データの可視化</h1>
+    <div style="max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 8px;">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('myChart');
+        new Chart(ctx, {
+            type: 'bar', // 棒グラフ
+            data: {
+                labels: ['現在の総投稿数'],
+                datasets: [{
+                    label: '投稿件数',
+                    data: [{{ post_count }}], // Pythonから渡された数値
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            }
+        });
+    </script>
+    <p style="text-align: center; margin-top: 20px;"><a href="{% url 'index' %}">戻る</a></p>
+</body>
+</html>
